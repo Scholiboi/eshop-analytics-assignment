@@ -45,7 +45,7 @@ def analyze_telemetry(req: AnalyticsRequest):
             
         # Extract lists of just the numbers we need to do math on
         latencies = [row["latency_ms"] for row in region_records]
-        uptimes = [row["uptime"] for row in region_records] 
+        uptimes = [row["uptime_pct"] for row in region_records]
         
         # Python's built-in statistics module does the heavy math for us!
         avg_latency = statistics.mean(latencies)
