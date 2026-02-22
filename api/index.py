@@ -19,6 +19,7 @@ class AnalyticsRequest(BaseModel):
     regions: list[str]
     threshold_ms: int
 
+
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Look for the JSON file in this exact same directory
