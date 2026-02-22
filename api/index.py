@@ -20,10 +20,10 @@ class AnalyticsRequest(BaseModel):
     regions: list[str]
     threshold_ms: int
 
-# 3. Load the JSON data safely 
-# (We have to tell the code to look in the folder above the 'api' folder)
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_FILE = os.path.join(ROOT_DIR, "q-vercel-latency.json")
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Look for the JSON file in this exact same directory
+DATA_FILE = os.path.join(CURRENT_DIR, "q-vercel-latency.json")
 
 with open(DATA_FILE, "r") as f:
     telemetry_data = json.load(f)
