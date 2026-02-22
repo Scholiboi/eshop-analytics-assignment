@@ -11,8 +11,7 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["*"],  # <-- Change this from ["POST"] to ["*"]
     allow_headers=["*"],
 )
 # 2. Define the exact shape of the incoming request body
