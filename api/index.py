@@ -54,7 +54,12 @@ def analyze_telemetry(req: AnalyticsRequest, response: Response):
         # Do the heavy math
         avg_latency = statistics.mean(latencies)
         avg_uptime = statistics.mean(uptimes)
-        p95_latency = statistics.quantiles(latencies, n=100)[94]
+        latencies_sorted = sorted(latencies)
+        idx = (len(latencies_sorted) - 1) * 0.95
+        lower = int(idx)
+        upper = lower + 1 if lower + 1 < len(latencies_sorted) else lower
+        weight = idx - lower
+        p95_latency = latencies_sorted[lower] + weight * (latencies_sorted[upper] - latencies_sorted[lower])
         breaches = sum(1 for lat in latencies if lat > req.threshold_ms)
         
         # Save this region's math to our dictionary
