@@ -11,10 +11,10 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_methods=["POST"], 
+    allow_credentials=True,
+    allow_methods=["*"],
     allow_headers=["*"],
 )
-
 # 2. Define the exact shape of the incoming request body
 class AnalyticsRequest(BaseModel):
     regions: list[str]
